@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>VoteSafe Dashboard</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+    <style type="text/css">
+.inside {
+    font-family: 'Roboto Condensed', sans-serif;
+
+    font-size:30px;
+}
+
+.data {
+    font-size:13px;
+    color:grey;
+}
+    </style>
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">VoteSafe Dashboard</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="connectivity.html">Connectivity</a></li>
+            <li><a href="livehelp.html">Live Help <span style="background-color: #cd4e4e" class="badge">Alert</span></a></li>
+            <li><a href="equipment.html">Equipment</a></li>
+            <li><a href="polls.html">Open Polls</a></li>
+            <li><a href="closedpolls.html">Closed Polls</a></li>
+            <li><a href="counts.html">Pollbook Statisics</a></li>
+            <li><a href="vemacstovotesafe.html">VEMACS to VoteSafe <span style="background-color: #FFA500" class="badge">Update</span></a></li>
+             <li><a href="jardeploy.html">JAR Deployment</a></li>
+              <li><a href="prelat.html">PRELAT</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Overview Dashboard</h1>
+
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder" >
+              <canvas id="connectivity-circle" width="400" height="150"></canvas>
+              <h4>Connectivity</h4>
+              <span class="text-muted">Pollbooks</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <canvas id="live-help-circle" width="400" height="150"></canvas>
+              <h4>Live Help</h4>
+              <span class="text-muted">Unanswered Live Help Messages</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <canvas id="equipment-circle" width="400" height="150"></canvas>
+              <h4>Equipment</h4>
+              <span class="text-muted">Failing Hardware</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <canvas id="polls-circle" width="400" heigth="150"></canvas>
+              <h4>Polls</h4>
+              <span class="text-muted">Open / Closed Polls</span>
+            </div>
+          </div>
+          <div class="row placeholders">
+            <div class="col-xs-9 col-sm-9 placeholder">
+              <canvas id="checkinStats" width="600" height="200"></canvas>
+              <h4>Check-ins By Hour</h4>
+              <span class="text-muted">Check-in Statistics</span>
+            </div>
+            <div class="col-xs-3 col-sm-3 placeholder">
+              <div id="voterturnout"></div>
+              <h4>Voter Turnout</h4>
+              <span class="text-muted">2,500 of 10,000</span>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="js/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript" src="js/jquery.circliful.min.js"></script>
+    <script type="text/javascript" src="js/Chart.js"></script>
+    <script>
+var ctxConn = document.getElementById("connectivity-circle");
+var dataConn = {
+    labels: [
+        "Online (300)",
+        "Partially Online (100)",
+        "Offline (50)"
+    ],
+    datasets: [
+        {
+            data: [300, 100, 50],
+            backgroundColor: [
+                "#39CF2A",
+                "#226fbe",
+                "#CB4E4E"
+            ],
+            hoverBackgroundColor: [
+                "#1EA314",
+                "#0a5daf",
+                "#AB3C3C"
+            ]
+        }]
+};
+var optionsConn = {};
+        var ConnectivityChart = new Chart(ctxConn, {
+          type: 'doughnut',
+          data: dataConn,
+          animation:{
+              animateScale:true
+          },
+          options: optionsConn
+        });
+var ctxLH = document.getElementById("live-help-circle");
+var dataLH = {
+  labels: [
+    "Read Messages (200)",
+    "Unread Messages (4)",
+  ],
+  datasets: [
+    {
+    data: [200, 4],
+    backgroundColor: [
+      "#39CF2A",
+      "#CB4E4E"
+    ],
+    hoverBackgroundColor: [
+      "#1EA314",
+      "#AB3C3C"
+    ]
+  }]
+};
+var optionsLH = {};
+var LHChart = new Chart(ctxLH, {
+  type: 'doughnut',
+  data: dataLH,
+  animation:{
+      animateScale:true
+  },
+  options: optionsLH
+});
+var ctxEquip = document.getElementById("equipment-circle");
+var dataEquip = {
+  labels: [
+    "Operational (500)",
+    "Failing (2)",
+  ],
+  datasets: [
+    {
+      data: [500, 2],
+      backgroundColor: [
+        "#226fbe",
+        "#CB4E4E"
+      ],
+      hoverBackgroundColor: [
+        "#0a5daf",
+        "#AB3C3C"
+      ]
+    }
+  ]
+};
+var optionsEquip = {};
+var EquipChart = new Chart( ctxEquip, {
+  type: 'doughnut',
+  data: dataEquip,
+  animation:{
+    animateScale:true
+  },
+  options: optionsEquip
+});
+var ctxPolls = document.getElementById("polls-circle");
+var dataPolls = {
+  labels: [
+    "Open Polls (200)",
+    "Closed Polls (10)"
+  ],
+  datasets: [
+    {
+    data: [200, 10],
+    backgroundColor: [
+      "#39CF2A",
+      "#CB4E4E"
+    ],
+    hoverBackgroundColor: [
+      "#1EA314",
+      "#AB3C3C"
+    ]
+  }]
+};
+var optionsPolls = {};
+var PollsChart = new Chart(ctxPolls, {
+  type: 'doughnut',
+  data: dataPolls,
+  animation:{
+    animateScale:true
+  },
+  options: optionsPolls
+});
+var ctxCheckins = document.getElementById("checkinStats");
+var dataCheckins = {
+  labels: ["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM"],
+  datasets: [{
+    label: "Voter Check-ins",
+    fill: false,
+    lineTension: 0,
+    lineCap: "butt",
+    data: [100, 150, 300, 100]
+  },
+  {
+    label: "Provisional Check-ins",
+    fill: false,
+    lineTension: .1,
+    lineCap: "butt",
+    backgroundColor: "rgba(75,192,192,0.4)",
+    borderColor: "rgba(75,192,192,1)",    
+    data: [10, 15, 30, 10]
+  },
+  ]
+};
+var options = {      
+        scaleLabel : "<%= value + ' + two = ' + (Number(value) + 2)   %>",
+        scaleOverride: true,
+        scaleSteps: 10,
+        scaleStepWidth: Math.ceil(100 / 10),
+        scaleStartValue: 0
+
+    };
+var CheckinsChart = new Chart(ctxCheckins, {
+  type: 'line',
+  data: dataCheckins,
+  animation: {
+    animateScale:true
+  }
+});
+/*var ctxTurnout = document.getElementById("voterturnout");
+var dataTurnout = {
+  labels: [
+    "Checked In",
+    "Not Checked In",
+  ],
+  datasets: [
+    {
+      data: [500, 20000],
+      backgroundColor: [
+        "#226fbe"
+      ],
+      hoverBackgroundColor: [
+        "#0a5daf"
+      ]
+    }
+  ]
+};
+var optionsTurnout = {};
+var turnoutChart = new Chart(ctxTurnout, {
+  type: 'doughnut',
+  data: dataTurnout,
+  animation: {
+    animateScale: true
+  },
+  options: optionsTurnout
+});*/
+            $("#voterturnout").circliful({
+            animation: 1,
+            animationStep: 5,
+            foregroundBorderWidth: 15,
+            backgroundBorderWidth: 15,
+            percent: 25,
+            textSize: 28,
+            textStyle: 'font-size: 12px;',
+            textColor: '#666',
+            multiPercentage: 1,
+            percentages: [10, 20, 30]
+        });
+    </script>
+    <script>
+
+    </script>  </body>
+</html>

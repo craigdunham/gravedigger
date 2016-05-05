@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Dashboard Template for VoteSafe</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Table CSS -->
+    <link href="css/bootstrap-table.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+    <style type="text/css">
+.inside {
+    font-family: 'Roboto Condensed', sans-serif;
+
+    font-size:30px;
+}
+
+.data {
+    font-size:13px;
+    color:grey;
+}
+    </style>
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">VoteSafe Dashboard</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="index.html">Overview <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="issues.html">Poll Place Issues</a></li>
+            <li><a href="connectivity.html">Connectivity</a></li>
+            <li><a href="livehelp.html" >Live Help <span style="background-color: #cd4e4e" class="badge">Alert</span></a></li>
+            <li ><a href="equipment.html">Equipment </a></li>
+            <li><a href="polls.html">Open Polls</a></li>
+            <li ><a href="closedpolls.html">Closed Polls</a></li>
+            <li  ><a href="counts.html">Pollbook Statisics</a></li>
+            <li><a href="vemacstovotesafe.html">VEMACS to VoteSafe <span style="background-color: #FFA500" class="badge">Update</span></a></li>
+            <li><a href="jardeploy.html">JAR Deployment</a></li>
+            <li><a href="prelat.html">PRELAT</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Poll Place Issues</h1>
+          <div class="table-responsive">
+            <table class="table table-striped" id="issuesTable" data-sortable="true" data-sort-name="site" data-sort-order="desc" data-search="true" data-show-columns="true" data-show-refresh="true" data-show-export="true" data-url="data/issues.json">
+              <thead>
+                <tr>
+                  <th data-field="site" data-sortable="true">Pollsite</th>
+                  <th data-field="issue_count" data-sortable="true">Issue Count</th>
+                  <th data-field="status" data-sortable="true">Connectivity Status</th>
+                  <th data-field="lasttime" data-sortable="true">Last Contacted</th>
+               </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="modal fade" tabindex="-1" role="dialog" id="exampleModal" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body" style="width:100%;">
+        <div class="row" style="width:130%;">
+          <div class="col-sm-9" style="font-weight:bolder;font-size:1.6em;">Fieldsystem: Dallas-203
+
+            <br/>
+
+              <canvas id="fieldsystem1" width="800" height="200"></canvas>
+              <div style="padding-left:25px;font-size:.7em;color:#999999;">
+
+                Sync Limit: <span style="color:#000;font-weight:bolder;font-size:1.3em;">225</span>   
+                <span style="padding-left:50px;">Success/Failed Transactions:</span> <span style="color:#000;font-weight:bolder;font-size:1.3em;"><span style="color:#198C19;">60%</span> / <span style="color:#CC5858;">40%</span></span>
+<span style="padding-left:50px;">Transaction History:</span> <button type="button" class="btn btn-primary" onclick="exportTableData()">CSV</button></span>
+            </div>
+          </div>
+
+          <div class="col-sm-9" style="padding-top:40px;font-weight:bolder;font-size:1.6em;">
+            Fieldsystem: Dallas-223
+            
+            <canvas id="fieldsystem2" width="800" height="200"></canvas>
+             <div style="padding-left:25px;font-size:.7em;color:#999999;">
+            Sync Limit: <span style="color:#000;font-weight:bolder;font-size:1.3em;">185</span>   
+            <span style="padding-left:50px;">Success/Failed Transactions:</span> <span style="color:#000;font-weight:bolder;font-size:1.3em;"><span style="color:#198C19;">72% </span>/ <span style="color:#CC5858;">28%</span></span>
+            <span style="padding-left:50px;">Transaction History:</span>  <button type="button" class="btn btn-primary" onclick="exportTableData()">CSV</button></div>
+            </div>
+        </div>
+          
+        </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="js/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <!-- Bootstrap Table JS -->
+    <script src="js/bootstrap-table.min.js"></script>
+    <script src="js/bootstrap-table-filter-control.js"></script>
+    <script src="js/libs/FileSaver/FileSaver.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/libs/jsPDF/jspdf.min.js"></script>
+    <script type="text/javascript" src="js/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script type="text/javascript" src="js/tableExport.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-table-export.js"></script>
+    <script type="text/javascript" src="js/Chart.js"></script>
+    <script type="text/javascript">
+$(function () {
+    $('#issuesTable').bootstrapTable({
+        onClickRow: function (row, $element) {
+          $('#gridSystemModalLabel').text(row.site)
+          $('#exampleModal').modal('show');
+        },
+        exportTypes: ['csv', 'excel', 'pdf']
+    });
+
+});
+    </script>
+  </body>
+</html>
