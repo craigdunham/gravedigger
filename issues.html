@@ -168,8 +168,29 @@
     <script type="text/javascript" src="js/bootstrap-table-export.js"></script>
     <script type="text/javascript" src="js/Chart.js"></script>
     <script type="text/javascript">
+    var data = [
+{
+  "site": "School House",
+  "issue_count": "4 (2 in the last hour)",
+  "status": "Online",
+  "lasttime": "8:41am"
+},
+{                
+  "site": "Watershed",
+  "issue_count": "1",
+  "status": "Offline",
+  "lasttime": "N/A"
+},
+{           
+  "site": "The Mall",
+  "issue_count": "8 ( 3 in the last hour )",
+  "status": "Online",
+  "lasttime": "9:41am"
+}
+];
 $(function () {
     $('#issuesTable').bootstrapTable({
+        data: data,
         onClickRow: function (row, $element) {
           $('#gridSystemModalLabel').text(row.site)
           $('#exampleModal').modal('show');
