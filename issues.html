@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -76,17 +77,17 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="index.html">Overview <span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="issues.html">Poll Place Issues</a></li>
-            <li><a href="connectivity.html">Connectivity</a></li>
-            <li><a href="livehelp.html" >Live Help <span style="background-color: #cd4e4e" class="badge">Alert</span></a></li>
-            <li ><a href="equipment.html">Equipment </a></li>
-            <li><a href="polls.html">Open Polls</a></li>
-            <li ><a href="closedpolls.html">Closed Polls</a></li>
-            <li  ><a href="counts.html">Pollbook Statisics</a></li>
-            <li><a href="vemacstovotesafe.html">VEMACS to VoteSafe <span style="background-color: #FFA500" class="badge">Update</span></a></li>
-            <li><a href="jardeploy.html">JAR Deployment</a></li>
-            <li><a href="prelat.html">PRELAT</a></li>
+            <li><a href='index.html'>Overview <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href='#'>Poll Place Issues</a></li>
+            <li><a href='connectivity.html'>Connectivity</a></li>
+            <li><a href='livehelp.html'>Live Help <span style="background-color: #cd4e4e" class="badge">Alert</span></a></li>
+            <li><a href='equipment.html'>Equipment </a></li>
+            <li><a href='polls.html'>Open Polls</a></li>
+            <li><a href='closedpolls.html'>Closed Polls</a></li>
+            <li><a href='counts.html'>Pollbook Statisics</a></li>
+            <li><a href='vemacstovotesafe.html'>VEMACS to VoteSafe <span style="background-color: #FFA500" class="badge">Update</span></a></li>
+            <li><a href='jardeploy.html'>JAR Deployment</a></li>
+            <li><a href='prelat.html'>PRELAT</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -95,7 +96,7 @@
             <table class="table table-striped" id="issuesTable" data-sortable="true" data-sort-name="site" data-sort-order="desc" data-search="true" data-show-columns="true" data-show-refresh="true" data-show-export="true" data-url="data/issues.json">
               <thead>
                 <tr>
-                  <th data-field="site" data-sortable="true">Pollsite</th>
+                  <th data-field="site" data-sortable="true">Poll Place</th>
                   <th data-field="issue_count" data-sortable="true">Issue Count</th>
                   <th data-field="status" data-sortable="true">Connectivity Status</th>
                   <th data-field="lasttime" data-sortable="true">Last Contacted</th>
@@ -114,33 +115,128 @@
         <h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
       </div>
       <div class="modal-body" style="width:100%;">
-        <div class="row" style="width:130%;">
-          <div class="col-sm-9" style="font-weight:bolder;font-size:1.6em;">Fieldsystem: Dallas-203
-
-            <br/>
-
-              <canvas id="fieldsystem1" width="800" height="200"></canvas>
-              <div style="padding-left:25px;font-size:.7em;color:#999999;">
-
-                Sync Limit: <span style="color:#000;font-weight:bolder;font-size:1.3em;">225</span>   
-                <span style="padding-left:50px;">Success/Failed Transactions:</span> <span style="color:#000;font-weight:bolder;font-size:1.3em;"><span style="color:#198C19;">60%</span> / <span style="color:#CC5858;">40%</span></span>
-<span style="padding-left:50px;">Transaction History:</span> <button type="button" class="btn btn-primary" onclick="exportTableData()">CSV</button></span>
-            </div>
+        <div class="row" style="width:130%;" id="allIssues">
+          <div class="col-sm-9">
+          	<div class="panel panel-danger">
+          		<div class="panel-heading" style="font-size:1.6em;">Cirtical Issues</div>
+          		<div class="panel-body">
+          			<div class="list-group">
+          				<a href="#" class="list-group-item" onclick="switchView('battery')">
+          					<h4 class="list-group-item-heading">Equipment</h4>
+          					<p class="list-group-item-text"><font style="font-weight: bold;">Kiosk Battery</font> is getting low at this location (<font style="font-weight: bold;color:red">10%</font>)<br/> <font style="font-weight: bold;">Mifi Battery</font> is getting low at this location (<font style="font-weight: bold;color:red">15%</font>)</p>
+          				</a>
+          				<a href="#" class="list-group-item" onclick="switchView('connections')">
+          					<h4 class="list-group-item-heading">Connectivity</h4>
+          					<p class="list-group-item-text">Inconsistant connections, site has been <font style="font-weight: bold;color:red">Offline</font> for <font style="font-weight: bold;color:red">20 minutes in the last hour</font></p>
+          				</a>
+          			</div>
+          		</div>
+          	</div>
+          	<div class="panel panel-warning">
+          		<div class="panel-heading" style="font-size:1.6em;">Warning</div>
+          		<div class="panel-body">
+          			<div class="list-group">
+          				<a href="#" class="list-group-item" onclick="switchView('prelat')">
+          					<h4 class="list-group-item-heading">PRELAT</h4>
+          					<p class="list-group-item-text">Did not recieve all updates, <font style="font-weight: bold;">Dallas-203</font> is missing <font style="font-weight: bold;color:red;">2,000 Global Updates</font></p>
+          				</a>
+          			</div>
+          		</div>
+          	</div>
           </div>
-
-          <div class="col-sm-9" style="padding-top:40px;font-weight:bolder;font-size:1.6em;">
-            Fieldsystem: Dallas-223
-            
-            <canvas id="fieldsystem2" width="800" height="200"></canvas>
-             <div style="padding-left:25px;font-size:.7em;color:#999999;">
-            Sync Limit: <span style="color:#000;font-weight:bolder;font-size:1.3em;">185</span>   
-            <span style="padding-left:50px;">Success/Failed Transactions:</span> <span style="color:#000;font-weight:bolder;font-size:1.3em;"><span style="color:#198C19;">72% </span>/ <span style="color:#CC5858;">28%</span></span>
-            <span style="padding-left:50px;">Transaction History:</span>  <button type="button" class="btn btn-primary" onclick="exportTableData()">CSV</button></div>
-            </div>
         </div>
-          
+        <div id="batteryIssues" class="row" style="width:130%;display:none;padding-bottom: 15px;">
+        	<div class="col-sm-9">
+        		<h4>Equipment</h4>
+        		<canvas id="batteryChart" width="400" height="200"></canvas>
+        		<button type="button" class="btn btn-default" onclick="switchView('home')">Back</button>
+        		<br/>
+        	</div>
         </div>
-      
+        <div id="connIssues" class="row" style="width:130%;display:none;padding-bottom: 15px;">
+        	<div class="col-sm-9">
+        		<h4>Connectivity</h4>
+        		<div class="table-responsive">
+        			<table class="table table-striped">
+        				<thead>
+        					<tr>
+        						<th>Label ID</th>
+        						<th>Status</th>
+        						<th>Sync Limit</th>
+        						<th>Global Update Count</th>
+        						<th>Pollplace Update Count</th>
+        					</tr>
+        				</thead>
+        				<tbody>
+        					<tr>
+        						<td>Dallas-203</td>
+        						<td style="color:green;font-weight: bold">Online</td>
+        						<td>225</td>
+        						<td>100</td>
+        						<td>10</td>
+        					</tr>
+        					<tr>
+        						<td>Dallas-223</td>
+        						<td style="color:red;font-weight: bold;">Offline</td>
+        						<td>175</td>
+        						<td>100</td>
+        						<td>100</td>
+        					</tr>
+        				</tbody>
+        			</table>
+        			<button type="button" class="btn btn-default" onclick="switchView('home')">Back</button>
+        			<br/>
+        		</div>
+        	</div>
+        </div>
+        <div id="preLatIssues" class="row" style="width:130%;display:none;padding-bottom: 15px;">
+        	<div class="col-sm-9">
+        		<h4>PRELAT</h4>
+        		<div class="table-responsive">
+        			<table class="table table-striped">
+        				<thead>
+        					<tr>
+        						<th>Label ID</th>
+        						<th>Election Mode</th>
+        						<th>Global Updates</th>
+        						<th>Poll Place Updates</th>
+        						<th>Election Setup Updates</th>
+        						<th>Print Test</th>
+        						<th>Camera Calibration</th>
+        						<th>Kiosk Connected</th>
+        						<th>Date Completed</th>
+        					</tr>
+        				</thead>
+        				<tbody>
+        					<tr>
+        						<td>Dallas-203</td>
+        						<td>Election Day</td>
+        						<td style="color:red;font-weight: bold;">15,000 of 17,000</td>
+        						<td>1,000 of 1,000</td>
+        						<td>100 of 100</td>
+        						<td>Completed</td>
+        						<td>Completed (<font style="font-weight: bold;">Focal 83</font>)</td>
+        						<td>Commpleted (<font style="font-weight: bold;">Version 4.6</font>)</td>
+        						<td>06/15/2016 2:00 PM</td>
+        					</tr>
+        					<tr>
+        						<td>Dallas-223</td>
+        						<td>Election Day</td>
+        						<td>17,000 of 17,000</td>
+        						<td>1,000 of 1,000</td>
+        						<td>100 of 100</td>
+        						<td>Completed</td>
+        						<td>Completed (<font style="font-weight: bold;">Focal 83</font>)</td>
+        						<td>Commpleted (<font style="font-weight: bold;">Version 4.6</font>)</td>
+        						<td>06/15/2016 2:00 PM</td>
+        					</tr>
+        				</tbody>
+           			</table>
+        		</div>
+        		<button type="button" class="btn btn-default" onclick="switchView('home')">Back</button>
+        		<br/>
+        	</div>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         
@@ -158,7 +254,6 @@
     <script src="js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
-    <!-- Bootstrap Table JS -->
     <script src="js/bootstrap-table.min.js"></script>
     <script src="js/bootstrap-table-filter-control.js"></script>
     <script src="js/libs/FileSaver/FileSaver.min.js" type="text/javascript"></script>
@@ -168,37 +263,143 @@
     <script type="text/javascript" src="js/bootstrap-table-export.js"></script>
     <script type="text/javascript" src="js/Chart.js"></script>
     <script type="text/javascript">
-    var data = [
-{
-  "site": "School House",
-  "issue_count": "4 (2 in the last hour)",
-  "status": "Online",
-  "lasttime": "8:41am"
-},
-{                
-  "site": "Watershed",
-  "issue_count": "1",
-  "status": "Offline",
-  "lasttime": "N/A"
-},
-{           
-  "site": "The Mall",
-  "issue_count": "8 ( 3 in the last hour )",
-  "status": "Online",
-  "lasttime": "9:41am"
-}
-];
-$(function () {
-    $('#issuesTable').bootstrapTable({
-        data: data,
-        onClickRow: function (row, $element) {
-          $('#gridSystemModalLabel').text(row.site)
-          $('#exampleModal').modal('show');
-        },
-        exportTypes: ['csv', 'excel', 'pdf']
-    });
+	    var data = [
+			{
+			  "site": "School House",
+			  "issue_count": "4 (2 in the last hour)",
+			  "status": "Online",
+			  "lasttime": "8:41am"
+			},
+			{                
+			  "site": "Watershed",
+			  "issue_count": "1",
+			  "status": "Offline",
+			  "lasttime": "N/A"
+			},
+			{           
+			  "site": "The Mall",
+			  "issue_count": "8 ( 3 in the last hour )",
+			  "status": "Online",
+			  "lasttime": "9:41am"
+			}
+		];
+		$(function () {
+		    $('#issuesTable').bootstrapTable({
+		        data: data,
+		        onClickRow: function (row, $element) {
+		          $('#gridSystemModalLabel').text(row.site);
+		          switchView("home");
+		          $('#exampleModal').modal('show');
+		        },
+		        exportTypes: ['csv', 'excel', 'pdf']
+		    });
 
-});
+		});
+		function switchView(page) {
+			if( page == "battery" ) {
+				$("#allIssues").hide();
+				$("#batteryIssues").show();
+			} else if( page == "connections" ) {
+				$("#allIssues").hide();
+				$("#connIssues").show();
+			} else if( page == "prelat" ) {
+				$("#allIssues").hide();
+				$("#preLatIssues").show();
+			} else if( page == "home" ) {
+				$("#batteryIssues").hide();
+				$("#connIssues").hide();
+				$("#preLatIssues").hide();
+				$("#allIssues").show();
+			}
+		}
+		var ctx = document.getElementById("batteryChart");
+		var dataBat = {
+		    labels: ["Kiosk", "Laptop", "Mifi"],
+		    datasets: [
+		        {
+		            label: "Charge Percentage",
+		            backgroundColor: ["rgba(255,99,132,0.4)","green","green"],
+		            strokeColor : ["rgba(255,99,132,0.4)","green","green"],
+		            borderWidth: 1,
+		            hoverBackgroundColor: ["rgba(255,99,132,0.4)","green","green"],
+		            hoverBorderColor: ["rgba(255,99,132,0.4)","green","green"],
+		            data: [10,90,100],
+		        }
+		    ]
+		};
+		var myBarChart = new Chart(ctx, {
+			type: 'bar',
+			data: dataBat,
+			options: {
+				legend: {
+					display: false
+				},
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true
+						}
+					}]
+				}
+			}
+		});
+	    var ctxCheckins = document.getElementById("fieldsystem1");
+
+		var dataCheckins = {
+		  labels: ["10:00 AM", "10:05", "10:10", "10:15", "10:20", "10:25", "10:30","10:35", "10:40", "10:45", "11:00 AM"],
+		  datasets: [
+		  {
+		    label: "Online/Offline",
+		    fill: true,
+		    lineTension: 0,
+		    lineCap: "butt",
+		    backgroundColor: "rgba(75,192,192,0.4)",
+		    borderColor: "rgba(75,192,192,1)",    
+		    data: [1, 0, 0, 1,1,1,0,0,0,1,1,1,1]
+		  },
+		  ]
+		};
+		var CheckinsChart = new Chart(ctxCheckins, {
+		  type: 'line',
+		  data: dataCheckins,
+		  animation: {
+		    animateScale:true
+		  },
+		  options: {
+		    scales: {
+		        yAxes: [{
+		            ticks: {
+		                min: -0.5,
+		                max: 1.5
+		            }
+		        }]
+		    }
+		  }
+		});
+
+		var ctxCheckins2 = document.getElementById("fieldsystem2");
+
+		var dataCheckins2 = {
+		  labels: ["10:00 AM", "10:05", "10:10", "10:15", "10:20", "10:25", "10:30","10:35", "10:40", "10:45", "11:00 AM"],
+		  datasets: [
+			  {
+			    label: "Online/Offline",
+			    fill: true,
+			    lineTension: 0,
+			    lineCap: "butt",
+			    backgroundColor: "rgba(75,192,192,0.4)",
+			    borderColor: "rgba(75,192,192,1)",    
+			    data: [1, 1, 1, 0,0,0,0,1,0,1,1,0,1]
+			  },
+		  ]
+		};
+		var CheckinsChart2 = new Chart(ctxCheckins2, {
+		  type: 'line',
+		  data: dataCheckins2,
+		  animation: {
+		    animateScale:true
+		  }
+		});
     </script>
   </body>
 </html>

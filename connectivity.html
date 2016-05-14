@@ -9,35 +9,29 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Dashboard Template for VoteSafe</title>
+    <title>VoteSafe Dashboard</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Bootstrap Table CSS -->
-    <link href="css/bootstrap-table.min.css" rel="stylesheet">
+    <link href="css/bootstrap-table.min.css" rel="stylesheet">    
+    <link href="css/typeahead.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="css/skins/_all-skins.min.css">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-    <style type="text/css">
-.inside {
-    font-family: 'Roboto Condensed', sans-serif;
 
-    font-size:30px;
-}
-
-.data {
-    font-size:13px;
-    color:grey;
-}
-.modal-backdrop
-{
-    opacity:0.1 !important;
-}
-    </style>
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
@@ -49,127 +43,429 @@
     <![endif]-->
   </head>
 
-  <body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><img src="img/icon64.png" width="70%"/></span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b style="vertical-align: middle;font-size:1.5em;"><span style="color:#FEBA3D;">Vote</span>Safe</b><img src="img/icon64.png" width="15%" style="padding-left:3px;"/></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">VoteSafe Dashboard</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
-          </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
-        </div>
-      </div>
-    </nav>
+          </a>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li><a href="index.html">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="issues.html">Poll Place Issues</a></li>
-            <li class="active"><a href="connectivity.html">Connectivity</a></li>
-            <li><a href="livehelp.html" >Live Help <span style="background-color: #cd4e4e" class="badge">Alert</span></a></li>
-            <li><a href="equipment.html">Equipment</a></li>
-            <li><a href="polls.html">Open Polls</a></li>
-            <li ><a href="closedpolls.html">Closed Polls</a></li>
-            <li><a href="counts.html">Pollbook Statisics</a></li>
-            <li><a href="vemacstovotesafe.html">VEMACS to VoteSafe</a></li>
-            <li><a href="jardeploy.html">JAR Deployment</a></li>
-            <li><a href="prelat.html">PRELAT</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Connectivity</h1>
-          <div class="table-responsive">
-            <table class="table table-striped" id="connTable"  data-sortable="true" data-sort-name="site" data-sort-order="desc" data-search="true" data-show-columns="true" data-pagination="true" data-show-refresh="true" data-page-size="25" data-row-style="rowStyle" data-show-export="true">
-              <thead>
-                <tr>
-                  <th data-field="site" data-sortable=true>Pollsite</th>
-                  <th data-field="systems" data-sortable=true>Number of Systems</th>
-                  <th data-field="status" data-sortable=true>Status</th>
-                  <th data-field="offline" data-sortable=true>Time Offline</th>
-                  <th data-field="pur" data-sortable=true>Precinct Updates Rate</th>
-                  <th data-field="gur" data-sortable=true>Global Updates Rate</th>
-                  <th data-field="queued" data-sortable=true>Queued Check-ins</th>
-                  <th data-field="signal" data-sortable=true>Signal Strength</th>
-                </tr>
-              </thead>
-            </table>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- Messages: style can be found in dropdown.less-->
+              <li class="dropdown messages-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-envelope-o"></i>
+                  <span class="label label-danger">3</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">You have 3 unread messages</li>
+                  <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                      <li><!-- start message -->
+                        <a href="#">
+                          <h4>
+                            Live Help - General
+                            <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                          </h4>
+                          <p>From: <b>DARTMOUTH ELEM SCHOOL</b><br/>Need more labels</p>
+                        </a>
+                      </li>
+                      <!-- end message -->
+                      <li>
+                        <a href="#">
+                          <h4>
+                            Live Help - Voter
+                            <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                          </h4>
+                          <p>From: <b>HICKMAN ELEM SCHOOL</b><br/>Please Cancel Mail Ballot Request</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <h4>
+                            Live Help - Provisional
+                            <small><i class="fa fa-clock-o"></i> 10 mins</small>
+                          </h4>
+                          <p>From: <b>PARK SOUTH YMCA</b><br/>No ID Voter</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="footer"><a href="#">See All Messages</a></li>
+                </ul>
+              </li>
+              <!-- Notifications: style can be found in dropdown.less -->
+
+              <!-- Tasks: style can be found in dropdown.less -->
+              <li class="dropdown tasks-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-flag-o"></i>
+                  <span class="label label-danger">16</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">You have 16 Issues</li>
+                  <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                      <li><!-- Task item -->
+                        <a href="connectivity.html?pg=preElec">
+                          <h3>
+                            Connectivity - Pre Election
+                            <small class="pull-right text-white bg-red label">11</small>
+                          </h3>
+                          <small>11 of 400 Systems are reporting Pre Election issues</small>
+                        </a>
+                      </li>
+                      <!-- end task item -->
+                      <li><!-- Task item -->
+                        <a href="connectivity.html?pg=open">
+                          <h3>
+                            Connectivity - Open Polls
+                            <small class="pull-right text-white bg-red label">3</small>
+                          </h3>
+                          <small>3 of 400 Systems are repoting Opening issues</small>
+                        </a>
+                      </li>
+                      <!-- end task item -->
+                      <li><!-- Task item -->
+                        <a href="connectivity.html?pg=heart">
+                          <h3>
+                            Connectivity - Heartbeat
+                            <small class="pull-right text-white bg-red label">2</small>
+                          </h3>
+                          <small>2 of 400 Systems are reporting Heartbeat issues</small>
+                        </a>
+                      </li>
+                      <!-- end task item -->
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <!-- User Account: style can be found in dropdown.less -->
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <!--<img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
+                  <span class="hidden-xs">Admin</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img src="img/avatar.png" class="img-circle" alt="User Image">
+
+                    <p>
+                      Admin - Dallas County
+                    </p>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- Control Sidebar Toggle Button -->
+              <!--<li>
+                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+              </li>-->
+            </ul>
           </div>
+        </nav>
+      </header>
+        <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="img/avatar.png" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>Admin</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-    </div>
-<div class="modal fade" tabindex="-1" role="dialog" id="exampleModal" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body" style="width:100%;">
-        <div class="row" style="width:130%;">
-          <div class="col-sm-9" style="font-weight:bolder;font-size:1.6em;">Fieldsystem: Dallas-203
+      <!-- search form -->
+      <form action="search.html" method="get" class="sidebar-form" style="overflow:visible">
+        <div class="input-group">
+          <input type="text" name="q" id="pollsite-search" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu">
+        <li class="header">MAIN NAVIGATION</li>
+        <li>
+          <a href="index.html">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
+          </a>
+        </li>
+        <li class="treeview active">
+          <a href="#">
+            <i class="fa fa-wifi"></i>
+            <span>Connectivity</span>
+            <span class="label pull-right bg-red">10+</span>
+          </a>
+          <ul class="treeview-menu">
+            <li id="preElec" class="votec-navpages"><a href="connectivity.html?pg=preElec"><i class="fa fa-circle-o text-red"></i> Pre Election<span class="label pull-right bg-red">11</span></a></li>
+            <li id="open" class="votec-navpages"><a href="connectivity.html?pg=open"><i class="fa fa-circle-o text-red"></i> Open Polls<span class="label pull-right bg-red">3</span></a></li>
+            <li id="heart" class="votec-navpages"><a href="connectivity.html?pg=heart"><i class="fa fa-circle-o text-red"></i> Heartbeat<span class="label pull-right bg-red">2</span></a></li>
+            <li id="in" class="votec-navpages"><a href="connectivity.html?pg=in"><i class="fa fa-circle-o"></i> Incoming Message</a></li>
+            <li id="out" class="votec-navpages"><a href="connectivity.html?pg=out"><i class="fa fa-circle-o"></i> Outgoing Message</a></li>
+            <li id="quick" class="votec-navpages"><a href="connectivity.html?pg=quick"><i class="fa fa-circle-o"></i> Quick Look</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="pages/widgets.html">
+            <i class="fa fa-laptop"></i> <span>Equipment</span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="equipment.html?pg=cam"><i class="fa fa-circle-o"></i> Camera</a></li>
+            <li><a href="equipment.html?pg=print"><i class="fa fa-circle-o"></i> Printers</a></li>
+            <li><a href="equipment.html?pg=bat"><i class="fa fa-circle-o"></i> Batteries</a></li>
+            <li><a href="equipment.html?pg=kiosk"><i class="fa fa-circle-o"></i> Kiosk</a></li>
+            <li><a href="equipment.html?pg=mifi"><i class="fa fa-circle-o"></i> Mifi</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="closedpolls.html">
+            <i class="fa fa-calendar"></i>
+            <span>Closed Polls</span>
+          </a>
+        </li>
+        <li>
+          <a href="counts.html">
+            <i class="fa fa-pie-chart"></i>
+            <span>Pollbook Statistics</span>
+          </a>
+        </li>
+        <li>
+          <a href="vemacstovotesafe.html">
+            <i class="fa fa-sitemap"></i> <span>VEMACS to VoteSafe</span>
+            <small class="label pull-right bg-yellow">1</small>
+          </a>
+        </li>
+        <li>
+          <a href="jardeploy.html">
+            <i class="fa fa-folder"></i> <span>JAR Deployment</span>
+          </a>
+        </li>
+        <li>
+          <a href="prelat.html">
+            <i class="fa fa-gears"></i> <span>PRELAT</span>
+          </a>
+        </li>
+        <li class="header">LABELS</li>
+        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+        <!--<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>-->
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Connectivity
+        <small id="subSectionTitle">Dashboard</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-wifi"></i> Connectivity</a></li>
+        <li class="active" id="breadcrumbItem">ITEM</li>
+      </ol>
+    </section>
 
-            <br/>
-
-              <canvas id="fieldsystem1" width="800" height="200"></canvas>
-              <div style="padding-left:25px;font-size:.7em;color:#999999;">
-
-                Sync Limit: <span style="color:#000;font-weight:bolder;font-size:1.3em;">225</span>   
-                <span style="padding-left:50px;">Success/Failed Transactions:</span> <span style="color:#000;font-weight:bolder;font-size:1.3em;"><span style="color:#198C19;">60%</span> / <span style="color:#CC5858;">40%</span></span>
-<span style="padding-left:50px;">Transaction History:</span> <button type="button" class="btn btn-primary" onclick="exportTableData()">CSV</button></span>
+    <!-- Main content -->
+    <section class="content">
+          <div id="defaultPage" style="display:none;" class="votec-subpages">
+            <div class="table-responsive">
+              <table class="table table-striped" id="connTable"  data-sortable="true" data-sort-name="site" data-sort-order="desc" data-search="true" data-show-columns="true" data-pagination="true" data-show-refresh="true" data-page-size="25" data-row-style="rowStyle" data-show-export="true">
+                <thead>
+                  <tr>
+                    <th data-field="site" data-sortable=true>Poll Place</th>
+                    <th data-field="systems" data-sortable=true>Systems</th>
+                    <th data-field="status" data-sortable=true>Status</th>
+                    <th data-field="offline" data-sortable=true>Time Offline</th>
+                    <th data-field="pur" data-sortable=true>Precinct Updates Rate</th>
+                    <th data-field="gur" data-sortable=true>Global Updates Rate</th>
+                    <th data-field="queued" data-sortable=true>Queued Check-ins</th>
+                    <th data-field="signal" data-sortable=true>Signal Strength</th>
+                  </tr>
+                </thead>
+              </table>
             </div>
           </div>
-
-          <div class="col-sm-9" style="padding-top:40px;font-weight:bolder;font-size:1.6em;">
-            Fieldsystem: Dallas-223
-            
-            <canvas id="fieldsystem2" width="800" height="200"></canvas>
-             <div style="padding-left:25px;font-size:.7em;color:#999999;">
-            Sync Limit: <span style="color:#000;font-weight:bolder;font-size:1.3em;">185</span>   
-            <span style="padding-left:50px;">Success/Failed Transactions:</span> <span style="color:#000;font-weight:bolder;font-size:1.3em;"><span style="color:#198C19;">72% </span>/ <span style="color:#CC5858;">28%</span></span>
-            <span style="padding-left:50px;">Transaction History:</span>  <button type="button" class="btn btn-primary" onclick="exportTableData()">CSV</button></div>
+          <div id="preElecPage" style="display:none;" class="votec-subpages">
+            <div class="table-responsive">
+              <table class="table table-striped" id="preElecTable"  data-sortable="true" data-sort-name="site" data-sort-order="desc" data-search="true" data-show-columns="true" data-pagination="true" data-show-refresh="true" data-page-size="25" data-row-style="rowStyle" data-show-export="true">
+                <thead>
+                  <tr>
+                    <th data-field="labelid" data-sortable=true>Label ID</th>
+                    <th data-field="preelecstatus" data-sortable=true>Status</th>
+                    <th data-field="preelecrate" data-sortable=true>Update Rate</th>
+                    <th data-field="preelectotals" data-sortable=true>Updates Needed</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+          <div id="openPage" style="display:none;" class="votec-subpages">
+            <div class="table-responsive">
+                <table class="table table-striped" id="openTable"  data-sortable="true" data-sort-name="site" data-sort-order="desc" data-search="true" data-show-columns="true" data-pagination="true" data-show-refresh="true" data-page-size="25" data-row-style="rowStyle" data-show-export="true">
+                    <thead>
+                        <tr>
+                          <th data-field="labelid" data-sortable=true>Label ID</th>
+                          <th data-field="pbu" data-sortable=true>Poll Book Unit</th>
+                          <th data-field="openstatus" data-sortable=true>Startup Status</th>
+                        </tr>
+                    </thead>
+                </table>
+              </div>
+          </div>
+          <div id="heartPage" style="display:none;" class="votec-subpages">
+            <div class="table-responsive">
+                <table class="table table-striped" id="heartbeatTable"  data-sortable="true" data-sort-name="site" data-sort-order="desc" data-search="true" data-show-columns="true" data-pagination="true" data-show-refresh="true" data-page-size="25" data-row-style="rowStyle" data-show-export="true">
+                    <thead>
+                        <tr>
+                          <th data-field="labelid" data-sortable=true>Label ID</th>
+                          <th data-field="pbu" data-sortable=true>Poll Book Unit</th>
+                          <th data-field="hearttime" data-sortable=true>Time Offline</th>
+                        </tr>
+                    </thead>
+                </table>
+                </div>
+          </div>
+          <div id="inPage" style="display:none;" class="votec-subpages">
+            <div class="table-responsive">
+                <table class="table table-striped" id="incomingTable"  data-sortable="true" data-sort-name="site" data-sort-order="desc" data-search="true" data-show-columns="true" data-pagination="true" data-show-refresh="true" data-page-size="25" data-row-style="rowStyle" data-show-export="true">
+                    <thead>
+                        <tr>
+                          <th data-field="labelid" data-sortable=true>Label ID</th>
+                          <th data-field="pbu" data-sortable=true>Poll Book Unit</th>
+                          <th data-field="inmsgs" data-sortable=true>Queued Messages</th>
+                          <th data-field="inavgtime" data-sortable=true>Queued Time Average</th>
+                        </tr>
+                    </thead>
+                </table>
+                </div>
+          </div>
+          <div id="outPage" style="display:none;" class="votec-subpages">
+            <div class="table-responsive">
+              <table class="table table-striped" id="outgoingTable"  data-sortable="true" data-sort-name="site" data-sort-order="desc" data-search="true" data-show-columns="true" data-pagination="true" data-show-refresh="true" data-page-size="25" data-row-style="rowStyle" data-show-export="true">
+                  <thead>
+                      <tr>
+                        <th data-field="labelid" data-sortable=true>Label ID</th>
+                        <th data-field="pbu" data-sortable=true>Poll Book Unit</th>
+                        <th data-field="outupdates" data-sortable=true>Poll Book Unit Updates</th>
+                        <th data-field="outrate" data-sortable=true>Update Rate</th>
+                      </tr>
+                  </thead>
+              </table>
+              </div>
+          </div>
+          <div id="quickPage" style="display:none;" class="votec-subpages">
+            <div class="table-responsive">
+                <table class="table table-striped" id="quickTable"  data-sortable="true" data-sort-name="site" data-sort-order="desc" data-search="true" data-show-columns="true" data-pagination="true" data-show-refresh="true" data-page-size="25" data-row-style="rowStyle" data-show-export="true">
+                    <thead>
+                        <tr>
+                          <th data-field="labelid" data-sortable=true>Label ID</th>
+                          <th data-field="pbu" data-sortable=true>Poll Book Unit</th>
+                          <th data-field="quickrepTime" data-sortable=true>Last Response Time</th>
+                          <th data-field="quickstatus" data-sortable=true>Status</th>
+                        </tr>
+                    </thead>
+                </table>
+                </div>
+          </div>
+    </section>
+    <!-- /.content -->
+  </div>
+      </div>
+    <div class="modal fade" id="drillUpModal" tabindex="-1" role="dialog" aria-lableledby="drillUpModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="drillUpModalLabel">Modal Title</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="votec-modalPage" id="preElecModalPage" style="display:none;">
+                        <div class="responsive-table">
+                            <table class="table table-striped" id="modalPreElecTable" data-sortable="true" data-sort-name="site" data-sort-order="desc" data-search="false" data-show-columns="false" data-pagination="true" data-show-refresh="true" data-page-size="25" data-row-style="rowStyle" data-show-export="true">
+                                <thead>
+                                    <tr>
+                                        <th data-field="labelid" data-sortable="true">Label ID</th>
+                                        <th data-field="preElec_status" data-sortable="true">Status</th>
+                                        <th data-field="preElec_rate" data-sortable="true">Update Rate</th>
+                                        <th data-field="preElec_updates" data-sortable="true">Updates Needed</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="votec-modalPage" id="openModalPage" style="display:none;">
+                        <div class="responsive-table">
+                            <table class="table table-striped" id="modalOpenTable" data-sortable="true" data-sort-name="site" data-sort-order="desc" data-search="false" data-show-columns="false" data-pagination="true" data-show-refresh="true" data-page-size="25" data-row-style="rowStyle" data-show-export="true">
+                                <thead>
+                                    <tr>
+                                        <th data-field="pbu" data-sortable="true">Poll Book Unit</th>
+                                        <th data-field="labelid" data-sortable="true">Label ID</th>
+                                        <th data-field="open_status" data-sortable="true">Startup Status</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="votec-modalPage" id="heartModalPage" style="display:none;">
+                        <div class="responsive-table">
+                            <table class="table table-striped" id="modalHeartTable" data-sortable="true" data-sort-name="site" data-sort-order="desc" data-search="false" data-show-columns="false" data-pagination="true" data-show-refresh="true" data-page-size="25" data-row-style="rowStyle" data-show-export="true">
+                                <thead>
+                                    <tr>
+                                        <th data-field="pbu" data-sortable="true">Poll Book Unit</th>
+                                        <th data-field="labelid" data-sortable="true">Label ID</th>
+                                        <th data-field="heart_offline" data-sortable="true">Time Offline</th>
+                                        <th>History</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div>
+                            <canvas id="heartModalLineChart" width="400" height="50"></canvas>
+                        </div>
+                        <div>
+                            <canvas id="heartModalLineChart2" width="400" height="50"></canvas>
+                        </div>
+                        <div>
+                            <canvas id="heartModalLineChart1" width="400" height="50"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
-          
-        </div>
-      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div>
-          <table style="display:none;" id="fieldsystem1_history" data-tableexport-display="always" data-sort-name="site" data-sort-order="desc" data-page-size="25">
-            <thead>
-                <tr>
-                  <th data-field="site" data-sortable=true>Pollsite</th>
-                  <th data-field="systems" data-sortable=true>Number of Systems</th>
-                  <th data-field="status" data-sortable=true>Status</th>
-                  <th data-field="offline" data-sortable=true>Time Offline</th>
-                  <th data-field="pur" data-sortable=true>Precinct Updates Rate</th>
-                  <th data-field="gur" data-sortable=true>Global Updates Rate</th>
-                  <th data-field="queued" data-sortable=true>Queued Check-ins</th>
-                  <th data-field="signal" data-sortable=true>Signal Strength</th>
-                </tr>
-            </thead>
-          </table>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -180,7 +476,14 @@
     <script src="js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
-    <!-- Bootstrap Table JS -->
+    <!-- Slimscroll -->
+    <script src="js/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="js/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="js/app.min.js"></script>
+    <script src="js/typeahead.min.js"></script>
+    <script src="js/search.js"></script>
     <script src="js/bootstrap-table.min.js"></script>
     <script src="js/bootstrap-table-filter-control.js"></script>
     <script src="js/libs/FileSaver/FileSaver.min.js" type="text/javascript"></script>
@@ -188,3903 +491,8 @@
     <script type="text/javascript" src="js/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
     <script type="text/javascript" src="js/tableExport.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-table-export.js"></script>
+    <script type="text/javascript" src="js/jquery.circliful.min.js"></script>
     <script type="text/javascript" src="js/Chart.js"></script>
-    <script type="text/javascript">
-var ctxCheckins = document.getElementById("fieldsystem1");
- var dataCheckins = {
-  labels: ["10:00 AM", "10:05", "10:10", "10:15", "10:20", "10:25", "10:30","10:35", "10:40", "10:45", "11:00 AM"],
-  datasets: [
-  {
-    label: "Online/Offline",
-    fill: true,
-    lineTension: 0.2,
-    lineCap: "butt",
-    backgroundColor: "rgba(75,192,192,0.4)",
-    borderColor: "rgba(75,192,192,1)",    
-    data: [1, 0, 0, 1,1,1,0,0,0,1,1,1,1,1, 0, 0, 1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,0,1,1,1,1,0,0,0,1,1]
-  },
-  ]
-};
-var CheckinsChart = new Chart(ctxCheckins, {
-  type: 'line',
-  data: dataCheckins,
-  animation: {
-    animateScale:true
-  },
-  title: {
-    display: true,
-    text: "Online / Offline by Hour"
-  },
-  legend: {
-    display: false
-  }
-});
-
-var ctxCheckins2 = document.getElementById("fieldsystem2");
-
-var dataCheckins2 = {
-  labels: ["10:00 AM", "10:05", "10:10", "10:15", "10:20", "10:25", "10:30","10:35", "10:40", "10:45", "11:00 AM"],
-  datasets: [
-  {
-    label: "Online/Offline",
-    fill: true,
-    lineTension: 0.2,
-    lineCap: "butt",
-    backgroundColor: "rgba(75,192,192,0.4)",
-    borderColor: "rgba(75,192,192,1)",    
-    data: [1, 1, 1, 0,0,0,0,1,0,1,1,0,1]
-  },
-  ]
-};
-var CheckinsChart2 = new Chart(ctxCheckins2, {
-  type: 'line',
-  data: dataCheckins2,
-  animation: {
-    animateScale:true
-  }
-});
-var data = [
-    {
-        "site": "2507-RICHARDSON HEIGHTS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2508-RICHARDSON TERRACE ELEM SCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2509-RICHARDSON EAST CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2510-YALE ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2511-DARTMOUTH ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2513-SPRINGRIDGE ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2514-JESS HARBEN ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2602-CIMARRON RECREATION CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2700-BIG SPRINGS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2702-SPRING CREEK ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2705-HICKMAN ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2707-WALLACE ETHRIDGE ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2708-NORTHSIDE BAPTIST CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2709-COOPER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2710-LISTER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2712-NORTHLAKE ELEM SCHOOL-GISD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2805-COPPELL TOWN CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2900-ADDISON FIRE STATION #2",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2902-ADDISON FIRE DEPARTMENT",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2923-HERFURTH ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2924-COYLE MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2927-SCHRADE MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2941-SACHSE CITY HALL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3000-WILLIAM B TRAVIS VANGUARD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3003-T W BROWNE MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3004-DANIEL WEBSTER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3008-DALLAS CO. COURTHOUSE -ALLEN",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3009-EXALL PARK RECREATION CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3011-ST. EDWARDS CATHOLIC CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3016-BILL J PRIEST INSTITUTE",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3017-MLK LEARNING CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3018-PARK SOUTH YMCA",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3019-JAMES MADISON HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3022-IRMA RANGEL WOMENS SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3025-MT. HOREB BAPTIST CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3026-ST. PAUL BAPTIST CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3027-LINCOLN HIGH SCHOOL- CHM",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3029-EVANGELIST TEMPLE CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3032-JAMES BOWIE ELEM SCHOOL-DISD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3034-GREATER MT PLEASANT BAPTIST",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3035-F D ROOSEVELT HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3038-THE WAY-TRUTH-LIFE CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3039-OLIVER W HOLMES MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3040-GOOD STREET BAPTIST CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3043-JOHN NEELY BRYAN ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3044-W W BUSHMAN ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3045-GETHSEMANE BAPTIST CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3046-JOHN W. CARPENTER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3047-CFNI STUDENT CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3048-SOUTH OAK CLIFF HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3049-CLARA OLIVER ANNEX",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3050-HOLLAND ELEM SCHOOL AT LISBON",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3051-FOUNTAIN OF LIVING WORD CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3052-ELISHA M PEASE ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3054-W M HAWLEY ATWELL ACADEMY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3055-ADELLE TURNER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3056-MARK TWAIN VANGUARD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3057-T G TERRY ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3058-ST. PAUL LUTHERAN CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3059-ST. LUKE PRESBYTERIAN CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3060-R L THORNTON ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3061-NEW TECH H S @ A MACEO SMITH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3062-J N ERVIN ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3063-RONALD E MCNAIR ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3064-DAVID W CARTER HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3065-UMPHREY LEE ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3066-MARTIN WEISS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3068-SINGING HILLS RECREATION CTR",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3069-CORNERSTONE TEMPLE BAPTIST",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3070-TOMMIE ALLEN REC CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3071-HIGHLAND HILLS UN METHODIST",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3077-PARK IN THE WOODS REC CTR",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3081-REVERCHON RECREATION CTR",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3082-W A BLAIR ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3083-KLEBERG RYLIE REC CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3092-THURGOOD MARSHALL REC CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3100-BELT LINE INTERMEDIATE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3104-BRAY ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3109-LAKERIDGE ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3204-REED MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3207-BYRD MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3211-FAIRMEADOWS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3301-DUNFORD RECREATION CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3304-POTEET HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3305-JOHN HANBY ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3307-W L WILKINSON MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3310-MESQUITE HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3312-PIRRUNG ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3313-J R THOMSPON ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3314-A C NEW MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3404-FLOYD ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3405-HODGES ELEMENTARY SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3408-FLOYD ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3500-SUNNYVALE TOWN CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3601-FAITH BIBLE CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3604-RUBY YOUNG ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3605-NORTHSIDE ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3606-THE MEADOWS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3607-COCKRELL HILL ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3611-DESOTO EAST MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3615-BELT LINE CONFERENCE CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3616-DESOTO HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3700-LAKEVIEW CENTENIAL HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3701-TOLER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3800-HOUSTON ELEM SCHOOL-LISD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3805-ELSIE ROBERTSON MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3809-LANCASTER VETERANS MEM. LIB",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3900-MCCOWAN MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3921-SEAGOVILLE CITY HALL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3940-WILMER COMMUNITY CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "3950-HUTCHINS COMMUNITY CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4002-CAILLETT ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4004-MARCUS REC CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4010-STEPHEN FOSTER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4014-SUDIE WILLIAMS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4016-K B POLK CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4018-MAPLE LAWN ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4019-ARLINGTON PARK REC CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4022-ESPERANZA MEDRANO ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4024-L G PINKSTON HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4028-AMEILA EARHART ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4031-C F CARR ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4032-REVERCHON RECREATION CTR",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4033-DALLAS FIRE STATION # 1",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4035-ACADEMY OF DALLAS SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4038-HARRELL BUDD ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4039-BEXAR STREET BAPTIST CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4040-ROGER Q MILLS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4043-THE UNION CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4046-CLINTON P RUSSELL ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4050-MOUNTAIN CREEK LIBRARY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4052-BILHARTZ ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4055-LESLIE STEMMONS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4056-PALABRA DE VIDA",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4057-KIEST REC CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4060-NANCY JANE COCHRAN ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1002-VICKERY BAPTIST CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1003-HAMILTON PARK PACESETTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1004-FOREST MEADOW JR. HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1005-NEW MOUNT ZION BAPTIST CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1006-MOSS HAVEN ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1008-LEE MCSHANN JR. ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1013-NORTH DALLAS HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1014-MULTIPLE CAREERS MAGNET CTR",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1019-DALLAS FIRE STATION # 17",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1020-BEN MILAM ELEM SCHOOL-DISD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1022-OAKLAWN BRANCH LIBRARY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1023-THE FATHERS CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1027-AUDELIA CREEK ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1029-RICHLAND COLLEGE",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1032-NORTHWOOD HILLS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1033-SPRING VALLEY ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1036-RISD ACADEMY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1038-A M AIKIN ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1040-DALLAS FIRE STATION #57",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1043-SKYVIEW ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1044-LAKE HIGHLANDS HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1045-HIGHLAND MEADOWS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1048-MARTHA T REILLY ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1049-MERRIMAN PARK ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1052-LOCHWOOD BRANCH LIBRARY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1054-CASA VIEW ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1056-CHARLES A GILL ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1057-ST. PIUS X CHURCH PARISH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1058-BRYAN ADAMS HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1059-REINHARDT ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1060-ALEX SANGER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1061-W H GASTON MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1065-GEORGE TRUETT ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1070-GRACE UNITED METHODIST CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1071-LAKEWOOD BRANCH LIBRARY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1073-JUNIUS HEIGHTS BAPTIST CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1074-SAMUELL GRAND REC CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1076-EDUARDO MATA ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1078-BAYLES ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1079-S S CONNER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1081-Owenwood United Methodist",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1083-COLONIAL BAPTIST CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1084-EDNA ROWE ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1085-URBAN PARK ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1087-SKYLINE HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1089-FORESTER FIELD HOUSE",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1090-SAN JACINTO ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1091-ANNIE WEB BLANTON SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1092-EDWARD TITCHE ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1093-NUEVA VIDA LIFE ASSEMBLY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1094-JOHN IRELAND ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1095-NATHANIEL HAWTHORNE ELEM",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1097-W W SAMUELL HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1098-FRED F FLORENCE MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1100-E B COMSTOCK MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1101-PLEASANT GROVE LIBRARY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1102-B H MACON ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1104-WILLIAM ANDERSON ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1108-H GRADY SPRUCE HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1109-FIRESIDE DR. RECREATION CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1116-EDWIN J. KIEST ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1118-J W RAY ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1119-ST. LUKE COMMUNITY CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1120-JFK Learning Center",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1121-LIVING WATERS CHURCH OF GOD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1301-FLORENCE PARK COMMUNITY CTR",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1310-TOSCH ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1312-GALLOWAY ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1500-DOVER ELEMENTARY SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1501-PROFESSIONAL DEVELOPMENT CTR",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1502-MATH SCIENCE TECH. MAGNET-RISD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1503-RICHLAND ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1700-LAVON DR BAPTIST CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1701-BUSSEY MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1702-GOLDEN MEADOWS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1703-A R DAVIS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1705-O HENRY ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1706-BRADFIELD ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1709-AUSTIN ACADEMY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1710-KIMBERLIN ACADEMY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1711-GRANGER COMMUNITY CENTER ANNEX",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1712-WILLIAMS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1714-MEMORIAL PATHWAY ACADEMY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1715-WATSON TECHNOLOGY CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1716-CLUB HILL ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1717-CLASSICAL CTR @ BRANDENBURG",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1718-SOUTHGATE ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1719-MONTCLAIR ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1720-O'BANION MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1722-CLASSICAL CENTER AT VIAL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1726-ROUTH ROACH ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "1728-SAM HOUSTON MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2002-HARRY C WITHERS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2003-W T WHITE HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2005-DEGOLYER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2007-JOHN CALVIN PRESBY CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2008-JOHN J PERSHING ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2009-L G CIGARROA ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2010-WALNUT HILL RECREATION CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2013-LOVERS LANE UN METHODIST",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2016-UNITY CHURCH OF DALLAS",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2018-NORTHHAVEN UN METHODIST CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2019-GEORGE B DEALEY VANGUARD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2020-ARTHUR KRAMER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2021-PRESTON HOLLOW UN METHODIST",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2024-BENJAMIN FRANKLIN MID SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2026-HILLCREST HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2027-OUR REDEEMER LUTHERAN CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2029-WESTMINSTER PRESBYTERIAN",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2032-VILLAGE COUNTRY CLUB",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2034-HENRY LONGFELLOW MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2035-STONEWALL JACKSON ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2036-ZION LUTHERAN CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2038-ROBERT E LEE ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2040-ST. ANDREWS PRESBYTERIAN",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2041-PRESBYTERIAN MED. OFFICE NORTH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2043-BRENTFIELD INTERMEDIATE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2044-TEXAS A&M RESEARCH EXT CTR",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2045-PARKHILL JR. HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2047-JAMES BOWIE ELEM SCHOOL-RISD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2048-DALLAS FIRE STATION # 7",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2049-PRESTONWOOD ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2051-SPRINGCREEK ELEM SCHOOL-RISD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2056-KING OF GLORY LUTHERAN CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2059-WALLACE ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2060-NORTHLAKE ELEM SCHOOL-RISD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2061-LAKE HIGHLANDS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2062-LAKE HIGHLANDS JR. HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2064-BROOKDALE LAKEHIGHLANDS",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2065-VICTOR HEXTER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2066-WHITE ROCK ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2067-L L HOTCHKISS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2068-DAN D ROGERS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2069-RIDGEWOOD RECREATION CTR",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2072-NORTHRIDGE PRESBYTERIAN CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2077-EWELL D WALKER MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2079-ANNE FRANK ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2200-BRADFIELD ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2203-JOHN ARMSTRONG ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2221-ROBERT HYER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2222-UNIVERSITY PARK ELEM SCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2224-HIGHLAND PARK MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2303-FARMERS BRANCH RECREATION CTR",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2305-WILLIAM L CABELL ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2310-FARMERS BRANCH CITY HALL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2401-KELLY FIELD HOUSE",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2406-KELLER SPRINGS BAPTIST CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2407-JOSEY RANCH LAKE LIBRARY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2408-CROSBY RECREATION CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2500-GREENWOOD HILLS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2501-CANYON CREEK ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2502-PRAIRIE CREEK ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2503-MOHAWK ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2504-RICHARDSON NORTH JR. HIGH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2505-NORTHRICH ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "2506-ARAPAHO CLASSICAL MAGNET SCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4061-L O DONALD ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4062-LELIA P COWART ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4063-ELMWOOD-EL BUEN SAMARITANO",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4065-ARCADIA PARK ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4067-GEORGE PEABODY ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4068-LIDA HOOE ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4069-WINNETKA ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4070-JOHN PEELER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4071-DALLAS COUNTY SUB-COURTHOUSE",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4073-PREPARING THE WAY MINISTRIES",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4074-SUNSET HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4075-JOHN H REAGAN SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4076-STEVEN PARK ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4077-ROSEMONT ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4078-KIDD SPRINGS REC CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4079-KESSLER PARK UN. METH CHURCH",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4081-ELADIO MARTINEZ LEARNING CTR",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4083-SIDNEY LANIER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4085-ANITA MARTINEZ REC CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4086-GRAUWYLER PARK REC CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4087-BACHMAN THERAPEUTIC REC CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4094-PARK FOREST BRANCH LIBRARY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4097-DAVID BURNETT ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4110-BOUDE STOREY MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4300-COCKRELL HILL CITY HALL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4502-BETTY WARMACK LIBRARY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4507-DANIELS ELEM ACADEMY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4508-STEM ACADEMY MILAM ELEM",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4509-YWLA AT ARNOLD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4511-JAMES BOWIE ELEM SCHOOL-GPISD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4512-CHARLEY TAYLOR REC CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4513-HOUSTON ELEM SCHOOL-GPISD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4514-CROSSWINDS HS/HOPE ACADEMY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4515-TRAVIS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4517-EISENHOWER ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4518-GRAND PRAIRIE FIRE STATION # 8",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4519-RONALD REAGAN MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4520-SAM RAYBURN ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4521-DE ZAVALA ES ACADEMY",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4522-TRUMAN MIDDLE SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4525-JOHNSON (LBJ) DAEP",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4527-GARCIA ELEM SCHOOL -GPISD",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4601-SALLY B ELLIOT ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4602-LEE BRITAIN ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4605-OTIS BROWN ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4607-IRVING HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4609-J O DAVIS ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4610-L B BARTON ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "good"
-    },
-    {
-        "site": "4616-Oak Haven Un Methodist Church",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "fair"
-    },
-    {
-        "site": "4623-A S JOHNSTON ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "fair"
-    },
-    {
-        "site": "4625-MACARTHUR HIGH SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "fair"
-    },
-    {
-        "site": "4627-IRVING FIRE STATION # 8",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "bad"
-    },
-    {
-        "site": "4628-THOMAS HALEY ELEM SCHOOL",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "bad"
-    },
-    {
-        "site": "4647-MUSTANG PARK REC CENTER",
-        "systems": "2",
-        "status": "Online",
-        "offline": "30 Seconds",
-        "pur": "0",
-        "gur": "100",
-        "queued": "1",
-        "signal": "Good",
-        "issue_state": "bad"
-    }
-];
-$(function () {
-    $('#connTable').bootstrapTable({
-        data: data,
-        onClickRow: function (row, $element) {
-          $('#gridSystemModalLabel').text(row.site)
-          $('#exampleModal').modal('show');
-        },
-        exportTypes: ['csv', 'excel', 'pdf']
-    });
-
-});
-
-function rowStyle(row, index) {
-  if(row.issue_state == "bad") {
-    return {
-      css: {"color": "#a94442","background-color": "#f2dede","border-color": "#ebccd1"}
-    };
-  } else if(row.issue_state == "fair") {
-    return {
-      css: {"color": "#8a6d3b","background-color": "#fcf8e3","border-color": "#faebcc"}
-    };
-  } else {
-    return {};
-  }
-}
-$(function () {
-    $('#fieldsystem1_history').bootstrapTable({
-      data: data,
-      exportTypes: ['csv', 'excel', 'pdf']
-    });
-});
-function exportTableData() {
-  $('#fieldsystem1_history').tableExport({type:'csv'});
-}
-    </script>
+    <script type="text/javascript" src="js/connectivity.js"></script>
   </body>
 </html>

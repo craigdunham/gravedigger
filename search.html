@@ -14,9 +14,9 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Table CSS -->
-    <link href="css/bootstrap-table.min.css" rel="stylesheet">
+    <link href="css/bootstrap-table.min.css" rel="stylesheet">    
     <link href="css/typeahead.css" rel="stylesheet">
-  <!-- Font Awesome -->
+    <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -259,7 +259,7 @@
             <span>Pollbook Statistics</span>
           </a>
         </li>
-        <li class="active">
+        <li>
           <a href="vemacstovotesafe.html">
             <i class="fa fa-sitemap"></i> <span>VEMACS to VoteSafe</span>
             <small class="label pull-right bg-yellow">1</small>
@@ -288,86 +288,23 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        VEMACS to VoteSafe
+        All Details for <b id="searchTxt">ITEM</b>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-sitemap"></i> Home</a></li>
-        <li class="active">VEMACS to VoteSafe</li>
+        <li><a href="index.html"><i class="fa fa-search"></i> Home</a></li>
+        <li class="active">Details</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-          <div class="row">
-          <div class="col-sm-4">
-          <div class="panel panel-primary" style="font-size:1.6em;">
-            <div class="panel-heading" style="font-weight: bolder;">Check-in Sync</div>
-            <div class="panel-body">
-              <font style="font-weight: bold;">VoteSafe</font>: 1000<br/>
-              <font style="font-weight: bold;">VEMACS</font>: 1000
-            </div>
-          </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="panel panel-primary" style="font-size:1.6em;">
-              <div class="panel-heading" style="font-weight: bolder;">Absentee Sync</div>
-              <div class="panel-body">
-                <font style="font-weight: bold;">VoteSafe</font>: 1000<br/>
-                <font style="font-weight: bold;">VEMACS</font>: 1000
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="panel panel-primary" style="font-size:1.6em;">
-              <div class="panel-heading" style="font-weight: bolder;">Provisional Sync</div>
-              <div class="panel-body">
-                <font style="font-weight: bold;">VoteSafe</font>: 10<br/>
-                <font style="font-weight: bold;">VEMACS</font>: 10
-              </div>
-            </div>
-          </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-4 col-sm-offset-2">
-              <div class="panel panel-primary" style="font-size:1.6em;">
-                <div class="panel-heading" style="font-weight: bolder;">Election Setup Sync</div>
-                <div class="panel-body">
-                  <font style="font-weight: bold;">Precincts</font>: 10<br/>
-                  <font style="font-weight: bold;">Ballot Styles</font>: 10<br/>
-                  <font style="font-weight: bold;">Poll Places</font>: 10<br/>
-                  <font style="font-weight: bold;">Poll Workers</font>: 10
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="panel panel-primary" style="font-size:1.6em;">
-                <div class="panel-heading" style="font-weight: bolder;">Sync Status</div>
-                <div class="panel-body">
-                  <font style="font-weight: bold;">Sync Status</font>: Running<br/>
-                  <font style="font-weight: bold;">Last Run</font>: 05/09/2016 10:00 AM<br/>
-                  <button type="button" class="btn btn-primary" onclick="exportTableData()" style="margin-bottom:13px;margin-top:14px;">CSV</button> 
-                </div>
-              </div>
-            </div>          
-          </div>
+
+    Results go here
     </section>
     <!-- /.content -->
   </div>
       </div>
-          <table id="updatesTable" data-tableexport-display="always" style="display:none;">
-            <thead>
-              <tr>
-                <th data-field="site" data-sortable="true">Last Update Time</th>
-                <th data-field="voter" data-sortable="true">Voter Updates</th>
-                <th data-field="absentee" data-sortable="true">Mail Ballot Updates</th>
-                <th data-field="pollplace" data-sortable="true">Poll Place Updates</th>
-                <th data-field="ballots" data-sortable="true">Ballot Style Updates</th>
-                <th data-field="worker" data-sortable="true">Poll Worker Updates</th>
-                <th data-field="precinct" data-sortable="true">Precinct Updates</th>
-                <th data-field="totals" data-sortable="true">Total Updates</th>
-              </tr>
-            </thead>
-          </table>
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -386,15 +323,8 @@
     <script src="js/app.min.js"></script>
     <script src="js/typeahead.min.js"></script>
     <script src="js/search.js"></script>
-    <script src="js/bootstrap-table.min.js"></script>
-    <script src="js/bootstrap-table-filter-control.js"></script>
-    <script src="js/libs/FileSaver/FileSaver.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/libs/jsPDF/jspdf.min.js"></script>
-    <script type="text/javascript" src="js/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
-    <script type="text/javascript" src="js/tableExport.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-table-export.js"></script>
     <script type="text/javascript" src="js/jquery.circliful.min.js"></script>
     <script type="text/javascript" src="js/Chart.js"></script>
-    <script type="text/javascript" src="js/vemacstovotesafe.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
   </body>
 </html>

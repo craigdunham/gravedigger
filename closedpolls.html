@@ -9,28 +9,29 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Dashboard Template for VoteSafe</title>
+    <title>VoteSafe Dashboard</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Table CSS -->
+    <link href="css/bootstrap-table.min.css" rel="stylesheet">    
+    <link href="css/typeahead.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="css/skins/_all-skins.min.css">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-    <style type="text/css">
-.inside {
-    font-family: 'Roboto Condensed', sans-serif;
 
-    font-size:30px;
-}
-
-.data {
-    font-size:13px;
-    color:grey;
-}
-    </style>
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
@@ -42,93 +43,278 @@
     <![endif]-->
   </head>
 
-  <body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><img src="img/icon64.png" width="70%"/></span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b style="vertical-align: middle;font-size:1.5em;"><span style="color:#FEBA3D;">Vote</span>Safe</b><img src="img/icon64.png" width="15%" style="padding-left:3px;"/></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">VoteSafe Dashboard</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
-          </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
-        </div>
-      </div>
-    </nav>
+          </a>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-       
-            <li><a href="index.html">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="issues.html">Poll Place Issues</a></li>
-            <li><a href="connectivity.html">Connectivity</a></li>
-            <li><a href="livehelp.html" >Live Help <span style="background-color: #cd4e4e" class="badge">Alert</span></a></li>
-            <li><a href="equipment.html">Equipment</a></li>
-            <li><a href="polls.html">Open Polls</a></li>
-            <li class="active"><a href="closedpolls.html">Closed Polls</a></li>
-            <li><a href="counts.html">Pollbook Statisics</a></li>
-            <li><a href="vemacstovotesafe.html">VEMACS to VoteSafe</a></li>
-            <li><a href="jardeploy.html">JAR Deployment</a></li>
-            <li><a href="prelat.html">PRELAT</a></li>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- Messages: style can be found in dropdown.less-->
+              <li class="dropdown messages-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-envelope-o"></i>
+                  <span class="label label-danger">3</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">You have 3 unread messages</li>
+                  <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                      <li><!-- start message -->
+                        <a href="#">
+                          <h4>
+                            Live Help - General
+                            <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                          </h4>
+                          <p>From: <b>DARTMOUTH ELEM SCHOOL</b><br/>Need more labels</p>
+                        </a>
+                      </li>
+                      <!-- end message -->
+                      <li>
+                        <a href="#">
+                          <h4>
+                            Live Help - Voter
+                            <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                          </h4>
+                          <p>From: <b>HICKMAN ELEM SCHOOL</b><br/>Please Cancel Mail Ballot Request</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <h4>
+                            Live Help - Provisional
+                            <small><i class="fa fa-clock-o"></i> 10 mins</small>
+                          </h4>
+                          <p>From: <b>PARK SOUTH YMCA</b><br/>No ID Voter</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="footer"><a href="#">See All Messages</a></li>
+                </ul>
+              </li>
+              <!-- Notifications: style can be found in dropdown.less -->
 
-          </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Closed Polls</h1>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Pollsite</th>
-                  <th>Closing Completed</th>
-                  <th>STOB Received</th>
-                  <th>Payroll Received</th>
-                  <th>Time Closed</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>ED Site 3</td>
-                  <td>Yes</td>
-                  <td>7:00 PM</td>
-                  <td>7:00 PM</td>
-                  <td>6:55 PM</td>
-                </tr>
-                <tr>
-                  <td>ED Site 2</td>
-                  <td>Yes</td>
-                  <td>7:00 PM</td>
-                  <td>7:00 PM</td>
-                  <td>6:55 PM</td>
-                </tr>
-                <tr>
-                  <td>ED Site 1</td>
-                  <td>Yes</td>
-                  <td>7:00 PM</td>
-                  <td>7:00 PM</td>
-                  <td>6:55 PM</td>
-                </tr>
-              </tbody>
-            </table>
+              <!-- Tasks: style can be found in dropdown.less -->
+              <li class="dropdown tasks-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-flag-o"></i>
+                  <span class="label label-danger">16</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">You have 16 Issues</li>
+                  <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                      <li><!-- Task item -->
+                        <a href="connectivity.html?pg=preElec">
+                          <h3>
+                            Connectivity - Pre Election
+                            <small class="pull-right text-white bg-red label">11</small>
+                          </h3>
+                          <small>11 of 400 Systems are reporting Pre Election issues</small>
+                        </a>
+                      </li>
+                      <!-- end task item -->
+                      <li><!-- Task item -->
+                        <a href="connectivity.html?pg=open">
+                          <h3>
+                            Connectivity - Open Polls
+                            <small class="pull-right text-white bg-red label">3</small>
+                          </h3>
+                          <small>3 of 400 Systems are repoting Opening issues</small>
+                        </a>
+                      </li>
+                      <!-- end task item -->
+                      <li><!-- Task item -->
+                        <a href="connectivity.html?pg=heart">
+                          <h3>
+                            Connectivity - Heartbeat
+                            <small class="pull-right text-white bg-red label">2</small>
+                          </h3>
+                          <small>2 of 400 Systems are reporting Heartbeat issues</small>
+                        </a>
+                      </li>
+                      <!-- end task item -->
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <!-- User Account: style can be found in dropdown.less -->
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <!--<img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
+                  <span class="hidden-xs">Admin</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img src="img/avatar.png" class="img-circle" alt="User Image">
+
+                    <p>
+                      Admin - Dallas County
+                    </p>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- Control Sidebar Toggle Button -->
+              <!--<li>
+                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+              </li>-->
+            </ul>
           </div>
+        </nav>
+      </header>
+        <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="img/avatar.png" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>Admin</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-    </div>
+      <!-- search form -->
+      <form action="search.html" method="get" class="sidebar-form" style="overflow:visible">
+        <div class="input-group">
+          <input type="text" name="q" id="pollsite-search" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu">
+        <li class="header">MAIN NAVIGATION</li>
+        <li>
+          <a href="index.html">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-wifi"></i>
+            <span>Connectivity</span>
+            <span class="label pull-right bg-red">10+</span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="connectivity.html?pg=preElec"><i class="fa fa-circle-o text-red"></i> Pre Election<span class="label pull-right bg-red">11</span></a></li>
+            <li><a href="connectivity.html?pg=open"><i class="fa fa-circle-o text-red"></i> Open Polls<span class="label pull-right bg-red">3</span></a></li>
+            <li><a href="connectivity.html?pg=heart"><i class="fa fa-circle-o text-red"></i> Heartbeat<span class="label pull-right bg-red">2</span></a></li>
+            <li><a href="connectivity.html?pg=in"><i class="fa fa-circle-o"></i> Incoming Message</a></li>
+            <li><a href="connectivity.html?pg=out"><i class="fa fa-circle-o"></i> Outgoing Message</a></li>
+            <li><a href="connectivity.html?pg=quick"><i class="fa fa-circle-o"></i> Quick Look</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="pages/widgets.html">
+            <i class="fa fa-laptop"></i> <span>Equipment</span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="equipment.html?pg=cam"><i class="fa fa-circle-o"></i> Camera</a></li>
+            <li><a href="equipment.html?pg=print"><i class="fa fa-circle-o"></i> Printers</a></li>
+            <li><a href="equipment.html?pg=bat"><i class="fa fa-circle-o"></i> Batteries</a></li>
+            <li><a href="equipment.html?pg=kiosk"><i class="fa fa-circle-o"></i> Kiosk</a></li>
+            <li><a href="equipment.html?pg=mifi"><i class="fa fa-circle-o"></i> Mifi</a></li>
+          </ul>
+        </li>
+        <li class="active">
+          <a href="closedpolls.html">
+            <i class="fa fa-calendar"></i>
+            <span>Closed Polls</span>
+          </a>
+        </li>
+        <li>
+          <a href="counts.html">
+            <i class="fa fa-pie-chart"></i>
+            <span>Pollbook Statistics</span>
+          </a>
+        </li>
+        <li>
+          <a href="vemacstovotesafe.html">
+            <i class="fa fa-sitemap"></i> <span>VEMACS to VoteSafe</span>
+            <small class="label pull-right bg-yellow">1</small>
+          </a>
+        </li>
+        <li>
+          <a href="jardeploy.html">
+            <i class="fa fa-folder"></i> <span>JAR Deployment</span>
+          </a>
+        </li>
+        <li>
+          <a href="prelat.html">
+            <i class="fa fa-gears"></i> <span>PRELAT</span>
+          </a>
+        </li>
+        <li class="header">LABELS</li>
+        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+        <!--<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>-->
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Closed Polls
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-calendar"></i> Home</a></li>
+        <li class="active">Closed Polls</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="table-responsive">
+        <table class="table table-striped" id="closedPollsTable" data-sortable="true" data-sort-name="site" data-sort-order="desc" data-search="true" data-show-columns="true" data-show-refresh="true" data-show-export="true">
+          <thead>
+            <tr>
+              <th data-field="site" data-sortable="true">Poll Place</th>
+              <th data-field="closed" data-sortable="true">Closing Completed</th>
+              <th data-field="stob" data-sortable="true">STOB Received</th>
+              <th data-field="payroll" data-sortable="true">Payroll Received</th>
+              <th data-field="closedTime" data-sortable="true">Time Closed</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+      </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -140,5 +326,23 @@
     <script src="js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <!-- Slimscroll -->
+    <script src="js/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="js/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="js/app.min.js"></script>
+    <script src="js/typeahead.min.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/bootstrap-table.min.js"></script>
+    <script src="js/bootstrap-table-filter-control.js"></script>
+    <script src="js/libs/FileSaver/FileSaver.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/libs/jsPDF/jspdf.min.js"></script>
+    <script type="text/javascript" src="js/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script type="text/javascript" src="js/tableExport.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-table-export.js"></script>
+    <script type="text/javascript" src="js/jquery.circliful.min.js"></script>
+    <script type="text/javascript" src="js/Chart.js"></script>
+    <script type="text/javascript" src="js/closedpolls.js"></script>
   </body>
 </html>
